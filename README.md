@@ -11,13 +11,6 @@
 - Sector-specific sentiment vs sector ETF performance
 
 # basic-architecture
-┌─────────────┐    ┌──────────────┐    ┌───────────┐    ┌──────────┐    ┌───────────┐
-│ Data Sources│ -> │  Databricks  │ -> │Delta Lake │ -> │ Analysis │ -> │ Dashboard │
-│(Reddit, APIs)│   │(Spark Stream)│    │ (Storage) │    │          │    │           │
-└─────────────┘    └──────────────┘    └───────────┘    └──────────┘    └───────────┘
-                            │
-                            ▼
-                   ┌─────────────────┐    ┌───────────────────┐    ┌─────────────┐
-                   │ API Schedulers  │ -> │Data Quality Checks│ -> │  ML Models  │
-                   │ (Airflow/DBRX)  │    │                   │    │ (Optional)  │
-                   └─────────────────┘    └───────────────────┘    └─────────────┘
+Data Sources → Databricks (Spark Streaming) → Delta Lake → Analysis → Dashboard
+     ↓
+API Schedulers → Data Quality Checks → Feature Engineering → ML Models
